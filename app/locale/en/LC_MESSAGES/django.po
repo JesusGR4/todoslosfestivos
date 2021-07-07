@@ -1,0 +1,179 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-21 01:27+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: experience/models.py:8
+msgid "Es un cliente"
+msgstr "It's a customer"
+
+#: experience/models.py:9
+msgid "Es un hotel"
+msgstr "It's an hotel"
+
+#: experience/models.py:17
+msgid "Nombre del idioma"
+msgstr ""
+
+#: experience/models.py:18
+msgid "Código del idioma"
+msgstr ""
+
+#: experience/models.py:23
+msgid "Idioma"
+msgstr ""
+
+#: experience/models.py:24
+msgid "Idiomas"
+msgstr ""
+
+#: experience/models.py:28
+msgid "Nombre de la experiencia"
+msgstr ""
+
+#: experience/models.py:30 experience/models.py:31
+msgid "Idioma de la experiencia"
+msgstr ""
+
+#: experience/models.py:34
+msgid "Pequeña descripción de la experiencia"
+msgstr ""
+
+#: experience/models.py:37
+msgid "Página con la que se inicia la experiencia"
+msgstr ""
+
+#: experience/models.py:43
+msgid "Experiencia"
+msgstr ""
+
+#: experience/models.py:44 experience/templates/base.html:74
+msgid "Experiencias"
+msgstr "Experiences"
+
+#: experience/models.py:51
+msgid "Experiencia a la que está relacionada"
+msgstr ""
+
+#: experience/models.py:52
+#, fuzzy
+#| msgid "Experiencias"
+msgid "Experiencia relacionada"
+msgstr "Experiences"
+
+#: experience/models.py:53
+msgid "Título de la página"
+msgstr ""
+
+#: experience/models.py:54
+msgid "URL de la página"
+msgstr ""
+
+#: experience/models.py:55
+msgid "Contenido"
+msgstr "Content"
+
+#: experience/models.py:58
+msgid "Página que continúa la experiencia"
+msgstr ""
+
+#: experience/templates/base.html:73
+msgid "Sobre nosotros"
+msgstr "About us"
+
+#: experience/templates/home.html:13
+msgid "¡Lee sobre nuestras experiencias!"
+msgstr "Read about our experiences!"
+
+#: experience/templates/home.html:20
+msgid "¡Esto es Xperifun!"
+msgstr "This is Xperifun!"
+
+#: experience/templates/home.html:25
+msgid ""
+"Somos un estudio creativo de experiencias en vivo y digitales, inquietos, "
+"impredecibles y poco convencionales. Aplicamos la última tecnología "
+"audiovisual para el entretenimiento y la comunicación. Sin referencia ni "
+"nada con lo que comparar. Xperifun es inclasificable. Esta es probablemente "
+"la mejor definición del concepto."
+msgstr ""
+"We are a creative studio of live and digital experiences, restless, "
+"unpredictable andunconventional. We apply the latest audiovisual technology "
+"for entertainment andcommunication. There’s nothing to compare it with. "
+"Xperifun is unclassifiable. This is probably the best definition of the "
+"concept."
+
+#: experience/templates/home.html:28
+msgid ""
+"Si te atreves, prepárate, pues vamos a hacerte vivir experiencias absolutas "
+"para sumergirte a ti y a los tuyos en la cultura y el divertimento, y todo "
+"desde tu domicilio o allí donde tú desees, siempre con total seguridad."
+msgstr ""
+" Dare with the Xperifun Gourmet. We relate the experience with the "
+"gastronomy."
+
+#: experience/templates/home.html:38
+msgid "Disfrútalo solo, en familia o con quién tú quieras."
+msgstr "Enjoy it alone, with your family or with whoever you want."
+
+#: experience/templates/home.html:46
+msgid ""
+"Atrévete con las Xperifun Gourmet. Relacionamos la experiencia con la "
+"gastronomía."
+msgstr ""
+"Dare with the Xperifun Gourmet. We relate the experience with thegastronomy."
+
+#: experience/templates/home.html:54
+msgid ""
+"Diversión, cultura, emociones y aprendizaje, todo en una sola experiencia"
+msgstr "Fun, culture, emotions and learning, all in one experience."
+
+#: experience/templates/home.html:59
+msgid "Si puedes imaginarlo ¡con nosotros lo vivirás!"
+msgstr "If you can imagine it, you will live it with us!"
+
+#: experience/templates/home.html:67
+msgid "Nuestras experiencias"
+msgstr "Our experiences"
+
+#: experience/templates/home.html:76
+msgid "¡Vamos!"
+msgstr "Go!"
+
+#: experience/templates/page.html:15
+msgid "Siguiente"
+msgstr "Next"
+
+#: settings/settings.py:130
+msgid "English"
+msgstr "English"
+
+#: settings/settings.py:131
+msgid "Español"
+msgstr "Spanish"
+
+#, fuzzy
+#~| msgid "Nuestras experiencias"
+#~ msgid "Ir a la experiencia"
+#~ msgstr "Go!"
+
+#~ msgid "Francés"
+#~ msgstr "French"
+
+#~ msgid "Catalan"
+#~ msgstr "Catalan"

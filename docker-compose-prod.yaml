@@ -1,0 +1,67 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy:latest
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /root/certs:/etc/nginx/certs
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./config/nginx/max_size.conf:/etc/nginx/conf.d/max_size.conf:ro
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+  letsencrypt-nginx:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: always
+    volumes:
+      - /root/certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes_from:
+      - nginx-proxy
+
+  nginx:
+    image: nginx:latest
+    container_name: todoslosfestivos_nginx
+    env_file:
+      - .env_nginx
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+      - ./app/static:/var/www/static/
+    depends_on:
+      - web
+
+  web:
+    build:
+      context: .
+    container_name: todoslosfestivos_web
+    command: gunicorn --bind 0.0.0.0:80 settings.wsgi
+    env_file:
+      - .env_server
+    depends_on:
+      - database
+    volumes:
+      - ./app:/app
+
+  database:
+    image: mysql:5.7
+    container_name: todoslosfestivos_database
+    env_file:
+      - .env_mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - todoslosfestivos_mysql_data:/var/lib/mysql
+
+volumes:
+  todoslosfestivos_mysql_data:
+    driver: local
+
+networks:
+  default:
+    external:
+      name: webproxy
+  todoslosfestivos:
