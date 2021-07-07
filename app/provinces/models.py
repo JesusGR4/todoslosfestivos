@@ -11,7 +11,11 @@ class XperifunUser(AbstractUser):
 
 class Comunidad(models.Model):
     name = models.CharField(max_length=100, null=False, blank=True, verbose_name=_('Nombre de la comunidad autóma'))
-
+    pagina_oficial = models.CharField(max_length=100, null=True, blank=True, verbose_name=_('Pagina oficial del sitio'))
+    latitude = models.CharField(max_length=255, null=False, blank=True, verbose_name=_('Latitude'))
+    longitude = models.CharField(max_length=255, null=False, blank=True, verbose_name=_('Longitude'))
+    scrapped_url = models.CharField(max_length=255, null=False, blank=True, default="", verbose_name=_('Scrapped url'))
+    
 class Provincia(models.Model):
     name = models.CharField(max_length=100, null=False, blank=True, verbose_name=_('Nombre de la provincia'))
     comunidad = models.ForeignKey(
@@ -21,17 +25,19 @@ class Provincia(models.Model):
     pagina_oficial = models.CharField(max_length=100, null=True, blank=True, verbose_name=_('Pagina oficial del sitio'))
     latitude = models.CharField(max_length=255, null=False, blank=True, verbose_name=_('Latitude'))
     longitude = models.CharField(max_length=255, null=False, blank=True, verbose_name=_('Longitude'))
+    scrapped_url = models.CharField(max_length=255, null=False, blank=True, default="", verbose_name=_('Scrapped url'))
 
 class Municipio(models.Model):
     name = models.CharField(max_length=100, null=False, blank=True, verbose_name=_('Nombre del municipio'))
-    comunidad = models.ForeignKey(
-        'provinces.Comunidad', verbose_name=_('Provincia a la que pertenece'), on_delete=models.PROTECT,
+    provincia = models.ForeignKey(
+        'provinces.Provincia', verbose_name=_('Provincia a la que pertenece'), on_delete=models.PROTECT,
         null=False, blank=False, help_text=_('Provincia a la que pertenece',)
     )
     num_habitantes = models.CharField(max_length=100, null=True, blank=True, verbose_name=_('Pagina oficial del sitio'))
     pagina_oficial = models.CharField(max_length=100, null=True, blank=True, verbose_name=_('Pagina oficial del sitio'))
     latitude = models.CharField(max_length=255, null=False, blank=True, verbose_name=_('Latitude'))
     longitude = models.CharField(max_length=255, null=False, blank=True, verbose_name=_('Longitude'))
+    scrapped_url = models.CharField(max_length=255, null=False, blank=True, default="", verbose_name=_('Scrapped url'))
 
 class Festivo(models.Model):
     name = models.CharField(max_length=100, null=False, blank=True, verbose_name=_('Nombre del festivo'))
