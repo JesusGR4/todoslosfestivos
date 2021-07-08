@@ -24,7 +24,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG') == "True"
-ALLOWED_HOSTS = ['festivosdeespaña.es', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['todoslosfestivos.es', 'localhost', '127.0.0.1']
 LOGIN_URL = "/administration/login"
 LOGIN_REDIRECT_URL= '/'
 # Application definition
