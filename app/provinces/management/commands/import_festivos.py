@@ -58,6 +58,7 @@ class Command(BaseCommand):
                             mes = meses.get(fechas.split(" de ")[1].lower(), '01')
                             fecha_inicio = f"2021-{mes}-{dia}"
                         Festivo.objects.create(
+                            municipio=municipio,
                             name=nombre,
                             fecha_inicio=fecha_inicio,
                             fecha_fin=fecha_fin,
@@ -101,6 +102,7 @@ class Command(BaseCommand):
                                     mes_ = meses.get(fechas_.split(" de ")[1].lower(), '01')
                                     fecha_inicio_ = f"2021-{mes_}-{dia_}"
                                 Festivo.objects.create(
+                                    municipio=municipio,
                                     name=nombre_,
                                     fecha_inicio=fecha_inicio_,
                                     fecha_fin=fecha_fin_,
