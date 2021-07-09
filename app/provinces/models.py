@@ -40,8 +40,10 @@ class Municipio(models.Model):
     scrapped_url = models.CharField(max_length=255, null=False, blank=True, default="", verbose_name=_('Scrapped url'))
 
 class Festivo(models.Model):
-    name = models.CharField(max_length=100, null=False, blank=True, verbose_name=_('Nombre del festivo'))
+    name = models.CharField(max_length=100, null=False, blank=True, verbose_name="Nombre del festivo")
     fecha_inicio = models.DateField(null=False, blank=False)
     fecha_fin = models.DateField(null=True, blank=True)
+    ciudad_cercana = models.CharField(max_length=255, null=True, blank=True, verbose_name="Ciudad relacionada")
+    distancia = models.CharField(max_length=255, null=True, blank=True, verbose_name="Distancia")
 
 
