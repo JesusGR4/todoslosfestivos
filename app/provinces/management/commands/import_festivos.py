@@ -47,10 +47,10 @@ class Command(BaseCommand):
                             fechas = fechas.replace("del", "").strip()
                             fechas_spliteadas = fechas_.split(" al ")
                             dia = fechas_spliteadas[0].split(" de ")[0]
-                            mes = meses.get(fecha_spliteada[0].split(" de ")[1].lower(), '01')
+                            mes = meses.get(fechas_spliteadas[0].split(" de ")[1].lower(), '01')
                             fecha_inicio = f"2021-{mes}-{dia}"
                             dia = fechas_spliteadas[1].split(" de ")[0]
-                            mes = meses.get(fecha_spliteada[1].split(" de ")[1].lower(), '01')
+                            mes = meses.get(fechas_spliteadas[1].split(" de ")[1].lower(), '01')
                             fecha_fin = f"2021-{mes}-{dia}"
                                 
                         elif fechas_span:
