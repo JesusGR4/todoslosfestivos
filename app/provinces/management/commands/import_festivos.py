@@ -34,6 +34,8 @@ class Command(BaseCommand):
                 for li in lis:
                     try:
                         nombre = li.find("span", {"class": "name"}).text
+                        if Festivo.objects.filter(name=nombre).exists():
+                            continue
                         distancia = li.p.find("span", {"class": "distance"}).text if li.p.find("span", {"class": "distance"}) else "" 
                         ciudad_cercana = li.p.find("a", {"class": "town"}).text if li.p.find("a", {"class": "town"}) else ""
                         fechas_span = li.p.find("span", {"class": "dates"})
@@ -75,6 +77,9 @@ class Command(BaseCommand):
                         lis_ = list_festivos_.find_all("li")
                         for li_ in lis_:
                             try:
+                                nombre_ = li_.find("span", {"class": "name"}).text
+                                if Festivo.objects.filter(name=nombre_).exists():
+                                    continue
                                 distancia_ = li_.p.find("span", {"class": "distance"}).text if li_.p.find("span", {"class": "distance"}) else ""
                                 ciudad_cercana_ = li_.p.find("a", {"class": "town"}).text if li_.p.find("a", {"class": "town"}) else ""
                                 fechas_span_ = li_.p.find("span", {"class": "dates"})
@@ -96,7 +101,7 @@ class Command(BaseCommand):
                                     mes_ = meses.get(fechas_.split(" de ")[1].lower(), '01')
                                     fecha_inicio_ = f"2021-{mes_}-{dia_}"
                                 Festivo.objects.create(
-                                    name=nombre,
+                                    name=nombre_,
                                     fecha_inicio=fecha_inicio_,
                                     fecha_fin=fecha_fin_,
                                     ciudad_cercana=ciudad_cercana_,
