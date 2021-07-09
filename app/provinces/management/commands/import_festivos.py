@@ -34,6 +34,7 @@ class Command(BaseCommand):
                 for li in lis:
                     try:
                         nombre = li.find("span", {"class": "name"}).text
+                        print(nombre)
                         if Festivo.objects.filter(name=nombre).exists():
                             continue
                         distancia = li.p.find("span", {"class": "distance"}).text if li.p.find("span", {"class": "distance"}) else "" 
@@ -79,6 +80,7 @@ class Command(BaseCommand):
                         for li_ in lis_:
                             try:
                                 nombre_ = li_.find("span", {"class": "name"}).text
+                                print(nombre_)
                                 if Festivo.objects.filter(name=nombre_).exists():
                                     continue
                                 distancia_ = li_.p.find("span", {"class": "distance"}).text if li_.p.find("span", {"class": "distance"}) else ""
@@ -112,3 +114,4 @@ class Command(BaseCommand):
                             except Exception as e:
                                 print(traceback.format_exc())
                                 continue
+                    i+=1
