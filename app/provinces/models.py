@@ -40,6 +40,10 @@ class Municipio(models.Model):
     scrapped_url = models.CharField(max_length=255, null=False, blank=True, default="", verbose_name=_('Scrapped url'))
 
 class Festivo(models.Model):
+    municipio = models.ForeignKey(
+        'provinces.Municipio', verbose_name=_('Municipio a la que pertenece'), on_delete=models.PROTECT,
+        null=False, blank=False, help_text=_('Municipio a la que pertenece',)
+    )
     name = models.CharField(max_length=100, null=False, blank=True, verbose_name="Nombre del festivo")
     fecha_inicio = models.DateField(null=False, blank=False)
     fecha_fin = models.DateField(null=True, blank=True)
