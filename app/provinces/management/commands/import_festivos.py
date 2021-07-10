@@ -69,7 +69,7 @@ class Command(BaseCommand):
                         print(traceback.format_exc())
                         continue
                 i=2
-                while i < last_page:
+                while i <= last_page:
                     url_ = "https://fiestas.net"+municipio.scrapped_url+f"{i}/"
                     req_ = requests.get(url_)
                     soup_ = BeautifulSoup(req_.content, 'html.parser')
