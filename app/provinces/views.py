@@ -15,7 +15,7 @@ def home_view(request):
 def comunidad_view(request, pk):
     comunidades = Comunidad.objects.all()
     comunidad_seleccionada = Comunidad.objects.get(pk=pk)
-    festivos = Festivo.objects.filter(municipio__provincia__comunidad=comunidad_seleccionada)
+    festivos = Festivo.objects.filter(municipio__provincia__comunidad=comunidad_seleccionada).order_by('-fecha_inicio')
     paginator = Paginator(festivos, 10)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -31,7 +31,7 @@ def provincia_view(request, pk):
     comunidades = Comunidad.objects.all()
     provincia = Provincia.objects.get(pk=pk)
     comunidad_seleccionada = provincia.comunidad
-    festivos = Festivo.objects.filter(municipio__provincia=provincia)
+    festivos = Festivo.objects.filter(municipio__provincia=provincia).order_by('-fecha_inicio')
     paginator = Paginator(festivos, 10)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -62,7 +62,7 @@ def municipio_view(request, pk):
     comunidades = Comunidad.objects.all()
     municipio = Municipio.objects.get(pk=pk)
     comunidad_seleccionada = municipio.provincia.comunidad
-    festivos = Festivo.objects.filter(municipio=municipio)
+    festivos = Festivo.objects.filter(municipio=municipio).order_by('-fecha_inicio')
     paginator = Paginator(festivos, 10)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
