@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div id="pageColumns">
+    <nav id="regions" class="vertical">
+        <span class="title dropDown" id="regionsTitle">Comunidades</span>
+        <ul id="regionsList">
+            {% for comunidad in comunidades %}
+            <li class="level0"><a href="/comunidad/{{ comunidad.pk }}/">{{ comunidad.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+    <main id="main">
+        <nav id="navBar">
+            <ul id="navigationBar">
+                <li><a href="/">Inicio</a>
+                </li>
+            </ul>
+        </nav>
+        <article>
+            <h1>Guía de Fiestas de España</h1>
+            <div id="updates">
+                <h2>Festivos más cercanos</h2>
+                <ul>
+                    {% for festivo in festivos %}
+                    <li><p>
+                        <a href="/municipio/{{ festivo.municipio.pk }}" class="town">{{ festivo.municipio.name }}</a>
+                        ({{ festivo.municipio.provincia.name }})
+                        {% if festivo.fecha_fin %}
+                        <span class="dates">Fechas: del {{ festivo.fecha_inicio | date:'m-d-Y'}} al {{ festivo.fecha_fin | date:'m-d-y'}}</span>
+                        {% else %}
+                        <span class="dates"> Fechas: {{ festivo.fecha_inicio | date:'m-d-Y'}}</span>
+                        {% endif %}
+                    </p>
+                        <span class="name">{{ festivo.name }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <h2>También te pueden interesar:</h2>
+            <ul id="related">
+                {% for provincia in provincias %}
+                <li><a href="/provincia/{{ provincia.pk }}">Fiestas&nbsp;en la provincia de {{ provincia.name}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </article>
+
+    </main>
+</div>
+
+{% endblock %}

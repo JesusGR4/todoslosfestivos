@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div id="pageColumns">
+    <nav id="regions" class="vertical">
+        <span class="title dropDown" id="regionsTitle">Comunidades</span>
+        <ul id="regionsList">
+            {% for comunidad in comunidades %}
+            <li class="level0"><a href="/comunidad/{{ comunidad.pk }}/">{{ comunidad.name }}</a></li>
+            {% if comunidad.pk == comunidad_seleccionada.pk %}
+            {% for provincia in comunidad_seleccionada.provincia_set.all %}
+            <li class="level1"><a href="/provincia/{{ provincia.pk }}/">{{ provincia.name }}</a></li>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+    <main id="main">
+        <nav id="navBar">
+            <ul id="navigationBar">
+                <li><a href="/">Inicio</a>
+                </li>
+            </ul>
+        </nav>
+        <article>
+            <h1>Guía de Fiestas de {{ provincia_seleccionada.name }}</h1>
+            <div id="updates">
+                <h2>Festivos más cercanos</h2>
+                <ul>
+                    {% for festivo in page_obj %}
+                    <li><p>
+                        <a href="/municipio/{{ festivo.municipio.pk }}" class="town">{{ festivo.municipio.name }}</a>
+                        ({{ festivo.municipio.provincia.name }})
+                        {% if festivo.fecha_fin %}
+                        <span class="dates">Fechas: del {{ festivo.fecha_inicio | date:'m-d-Y'}} al {{ festivo.fecha_fin | date:'m-d-Y'}}</span>
+                        {% else %}
+                        <span class="dates"> Fechas: {{ festivo.fecha_inicio | date:'m-d-Y'}}</span>
+                        {% endif %}
+                    </p>
+                        <span class="name">{{ festivo.name }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; Inicio</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            <h2>También te pueden interesar:</h2>
+            <ul id="related">
+                {% for provincia in provincias %}
+                <li><a href="/provincia/{{ provincia.pk }}">Fiestas&nbsp;en la provincia de {{ provincia.name}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </article>
+
+    </main>
+    <nav id="specificMenu" class="vertical">
+		<aside id="place">
+				<span class="title" id="placeTitle">{{ provincia_seleccionada.name }} (Provincia)</span>
+					<ul id="placeInfo">
+						<li><a href="/provincia/{{ provincia_seleccionada.pk }}/municipios/">Municipios</a></li>
+                        <li><a href="{{ provincia_seleccionada.pagina_oficial }}">Página Oficial</a></li>
+                    </ul>
+				</aside>
+		</nav>
+</div>
+
+{% endblock %}

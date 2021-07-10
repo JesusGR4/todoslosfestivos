@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div id="pageColumns">
+    <nav id="regions" class="vertical">
+        <span class="title dropDown" id="regionsTitle">Comunidades</span>
+        <ul id="regionsList">
+            {% for comunidad in comunidades %}
+            <li class="level0"><a href="/comunidad/{{ comunidad.pk }}/">{{ comunidad.name }}</a></li>
+            {% if comunidad.pk == comunidad_seleccionada.pk %}
+            {% for provincia in comunidad_seleccionada.provincia_set.all %}
+            <li class="level1"><a href="/provincia/{{ provincia.pk }}/">{{ provincia.name }}</a></li>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+    <main id="main">
+        <article>
+            <h1>Municipios de {{ provincia_seleccionada.name }} (Provincia)</h1>
+            <ul id="places">
+                {% for municipio in municipios %}
+                    <li><a href="/municipio/{{ municipio.pk }}">{{ municipio.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </article>
+    </main>
+    <nav id="specificMenu" class="vertical">
+        <aside id="place">
+            <span class="title" id="placeTitle">{{ provincia_seleccionada.name }} (Provincia)</span>
+            <ul id="placeInfo">
+                <li><a href="/provincia/{{ provincia_seleccionada.pk }}/municipios/">Municipios</a></li>
+                <li><a href="{{ provincia.pagina_oficial }}">Página Oficial</a></li>
+            </ul>
+        </aside>
+    </nav>
+</div>
+{% endblock %}
