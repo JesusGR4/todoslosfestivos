@@ -23,7 +23,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         for municipio in Municipio.objects.all():
+            print(municipio.name)
             url = "https://fiestas.net"+municipio.scrapped_url
+            print(url)
             req = requests.get(url)
             soup = BeautifulSoup(req.content, 'html.parser')
             list_festivos = soup.find(id="fiestas")
@@ -71,6 +73,7 @@ class Command(BaseCommand):
                 i=2
                 while i <= last_page:
                     url_ = "https://fiestas.net"+municipio.scrapped_url+f"{i}/"
+                    print(url_)
                     req_ = requests.get(url_)
                     soup_ = BeautifulSoup(req_.content, 'html.parser')
                     list_festivos_ = soup_.find(id="fiestas")
