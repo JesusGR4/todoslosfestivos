@@ -1,9 +1,22 @@
 {% load static %}
 {% load i18n %}
 
-<html >
+<html>
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJCZB6LFHH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-YJCZB6LFHH');
+    </script>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
@@ -17,10 +30,10 @@
 </head>
 
 <body>
-    <nav id="topBar">
-        <a href="/" class="logo">Todoslosfestivos.es</a>
-    </nav>
-    {% block content %}{% endblock %}
+<nav id="topBar">
+    <a href="/" class="logo">Todoslosfestivos.es</a>
+</nav>
+{% block content %}{% endblock %}
 
 </body>
 
