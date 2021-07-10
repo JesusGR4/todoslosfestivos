@@ -34,7 +34,6 @@ class Command(BaseCommand):
                 for li in lis:
                     try:
                         nombre = li.find("span", {"class": "name"}).text
-                        print(nombre)
                         if Festivo.objects.filter(name=nombre).exists():
                             continue
                         distancia = li.p.find("span", {"class": "distance"}).text if li.p.find("span", {"class": "distance"}) else "" 
@@ -45,7 +44,7 @@ class Command(BaseCommand):
                         if fechas_span and " al " in fechas_span.text:
                             fechas = fechas_span.text
                             fechas = fechas.replace("del", "").strip()
-                            fechas_spliteadas = fechas_.split(" al ")
+                            fechas_spliteadas = fechas.split(" al ")
                             dia = fechas_spliteadas[0].split(" de ")[0]
                             mes = meses.get(fechas_spliteadas[0].split(" de ")[1].lower(), '01')
                             fecha_inicio = f"2021-{mes}-{dia}"
@@ -80,7 +79,6 @@ class Command(BaseCommand):
                         for li_ in lis_:
                             try:
                                 nombre_ = li_.find("span", {"class": "name"}).text
-                                print(nombre_)
                                 if Festivo.objects.filter(name=nombre_).exists():
                                     continue
                                 distancia_ = li_.p.find("span", {"class": "distance"}).text if li_.p.find("span", {"class": "distance"}) else ""
