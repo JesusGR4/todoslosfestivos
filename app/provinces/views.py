@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from provinces.models import Comunidad, Provincia, Municipio, Festivo
 from django.core.paginator import Paginator
+import datetime
+today = datetime.datetime.today()
 
 
 def home_view(request):
     comunidades = Comunidad.objects.all()
-    festivos_mas_cercanos = Festivo.objects.order_by('fecha_inicio')[:10]
+    festivos_mas_cercanos = Festivo.objects.filter(fecha_inicio__gte=today).order_by('fecha_inicio')[:10]
     provincias = Provincia.objects.all()[:5]
     return render(request, 'home.html', {'comunidades': comunidades,
                                          'festivos': festivos_mas_cercanos,
@@ -15,7 +17,8 @@ def home_view(request):
 def comunidad_view(request, pk):
     comunidades = Comunidad.objects.all()
     comunidad_seleccionada = Comunidad.objects.get(pk=pk)
-    festivos = Festivo.objects.filter(municipio__provincia__comunidad=comunidad_seleccionada).order_by('fecha_inicio')
+    festivos = Festivo.objects.filter(municipio__provincia__comunidad=comunidad_seleccionada)\
+        .filter(fecha_inicio__gte=today).order_by('fecha_inicio')
     paginator = Paginator(festivos, 10)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -31,7 +34,7 @@ def provincia_view(request, pk):
     comunidades = Comunidad.objects.all()
     provincia = Provincia.objects.get(pk=pk)
     comunidad_seleccionada = provincia.comunidad
-    festivos = Festivo.objects.filter(municipio__provincia=provincia).order_by('fecha_inicio')
+    festivos = Festivo.objects.filter(municipio__provincia=provincia).filter(fecha_inicio__gte=today).order_by('fecha_inicio')
     paginator = Paginator(festivos, 10)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -62,7 +65,7 @@ def municipio_view(request, pk):
     comunidades = Comunidad.objects.all()
     municipio = Municipio.objects.get(pk=pk)
     comunidad_seleccionada = municipio.provincia.comunidad
-    festivos = Festivo.objects.filter(municipio=municipio).order_by('fecha_inicio')
+    festivos = Festivo.objects.filter(municipio=municipio).filter(fecha_inicio__gte=today).order_by('fecha_inicio')
     paginator = Paginator(festivos, 10)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

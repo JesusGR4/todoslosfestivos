@@ -22,7 +22,7 @@ class Command(BaseCommand):
     help = 'Importación de provincias'
 
     def handle(self, *args, **options):
-        for municipio in Municipio.objects.all():
+        for municipio in Municipio.objects.filter(festivo__isnull=True).all():
             print(municipio.name)
             url = "https://fiestas.net"+municipio.scrapped_url
             print(url)
